@@ -43,13 +43,11 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projectsData.map((project, i) => (
-            <a
+            <div
               key={project.id}
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="block rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group cursor-pointer"
               style={{ background: "var(--card-bg)" }}
+              onClick={() => project.liveUrl && window.open(project.liveUrl, "_blank", "noopener,noreferrer")}
             >
               {/* Image area — gradient placeholder */}
               <div className="relative h-52 overflow-hidden">
@@ -119,7 +117,7 @@ export default function Projects() {
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </div>

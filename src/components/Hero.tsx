@@ -11,6 +11,15 @@ const titles = [
   "Next.js & MERN Expert",
 ];
 
+const heroTechList = [
+  "Next.js",
+  "React",
+  "Node.js",
+  "TypeScript",
+  "MongoDB",
+  "AI",
+];
+
 // High-end Stripe/Vercel Style Ambient Spotlight & Constellation Grid Background
 function AmbientSpotlightBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -59,7 +68,6 @@ function AmbientSpotlightBackground() {
     }
 
     const render = () => {
-      // Smooth interpolation for mouse position
       mouse.x += (mouse.targetX - mouse.x) * 0.05;
       mouse.y += (mouse.targetY - mouse.y) * 0.05;
 
@@ -112,16 +120,14 @@ function AmbientSpotlightBackground() {
         if (s.y < 0) s.y = height;
         if (s.y > height) s.y = 0;
 
-        // Draw Star node
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${primaryColor}, ${s.alpha})`;
         ctx.fill();
       });
 
-      // 4. Draw Connecting Lines between nearby stars & cursor
+      // 4. Draw Connecting Lines
       for (let i = 0; i < stars.length; i++) {
-        // Link to mouse cursor
         const distMouse = Math.hypot(stars[i].x - mouse.x, stars[i].y - mouse.y);
         if (distMouse < 180) {
           const alphaMouse = (1 - distMouse / 180) * 0.25;
@@ -133,7 +139,6 @@ function AmbientSpotlightBackground() {
           ctx.stroke();
         }
 
-        // Link to other stars
         for (let j = i + 1; j < stars.length; j++) {
           const dist = Math.hypot(stars[i].x - stars[j].x, stars[i].y - stars[j].y);
           if (dist < 130) {
@@ -213,8 +218,18 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, []);
 
+  const scrollToProjects = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="relative h-screen w-full overflow-hidden" style={{ background: "var(--bg)" }}>
+    <section className="relative min-h-screen w-full overflow-hidden flex flex-col justify-between pt-24 pb-10" style={{ background: "var(--bg)" }}>
       {/* Vercel/Stripe Ambient Cursor Spotlight & Tech Grid Constellation Background */}
       <AmbientSpotlightBackground />
 
@@ -238,23 +253,23 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Center Hero Content */}
+      {/* Center Hero Content Container */}
       <div
-        className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
+        className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto w-full my-auto"
         role="main"
       >
-        {/* Name in SINGLE LINE */}
-        <div className="relative mb-6 w-full max-w-7xl mx-auto">
-          {/* SVG Outline Ghost Text in single line */}
+        {/* Name Container with Ghost Outline SVG behind */}
+        <div className="relative mb-10 sm:mb-12 w-full flex items-center justify-center">
+          {/* SVG Outline Ghost Text — Positioned tucked under main heading matching reference image */}
           <svg
-            className="absolute top-10 left-1/2 -translate-x-1/2 -z-10 h-[8rem] w-full hidden lg:block opacity-60"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[24%] -z-10 h-[4.5rem] sm:h-[6.5rem] md:h-[8rem] lg:h-[9rem] w-full opacity-35 pointer-events-none"
             viewBox="0 0 1200 150"
             preserveAspectRatio="xMidYMid meet"
           >
             <defs>
               <linearGradient id="strokeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="40%" stopColor="currentColor" stopOpacity="0" />
-                <stop offset="100%" stopColor="currentColor" stopOpacity="0.8" />
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="currentColor" stopOpacity="0.2" />
               </linearGradient>
             </defs>
             <text
@@ -272,58 +287,135 @@ export default function Hero() {
           </svg>
 
           {/* Single-Line Giant Heading */}
-          <h1 className="font-extrabold text-center text-[var(--fg)] tracking-tight whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+          <h1 className="font-extrabold text-center text-[var(--fg)] tracking-tight whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl relative z-10">
             Harshit Kumar Sharma
           </h1>
         </div>
 
-        {/* Animated Motion Title & Availability */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-2 h-12">
+        {/* Animated Motion Title & Open Opportunities Badge Row */}
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-6 relative z-10">
           {/* Motion Animated Title text */}
-          <div className="relative h-8 overflow-hidden min-w-[260px] sm:min-w-[300px] flex items-center justify-center">
+          <div className="relative h-7 overflow-hidden min-w-[220px] sm:min-w-[260px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.span
                 key={index}
-                initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+                initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="absolute text-base sm:text-xl font-bold text-[var(--fg-muted)] uppercase tracking-wider"
+                exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
+                className="absolute text-sm sm:text-base font-extrabold text-[var(--fg)] uppercase tracking-widest"
               >
                 {titles[index]}
               </motion.span>
             </AnimatePresence>
           </div>
 
-          <span className="hidden sm:inline text-[var(--fg-subtle)]">·</span>
+          <span className="hidden sm:inline text-[var(--fg-subtle)] font-bold">·</span>
 
-          {/* Availability Badge */}
-          <span className="available-badge">
+          {/* Open to Full-Time Opportunities Badge */}
+          <span className="available-badge px-3.5 py-1.5 text-xs font-semibold">
             <span className="ping-dot w-2 h-2 rounded-full bg-green-600 dark:bg-green-400" />
-            Available for Work
+            Open to Full-Time Opportunities
           </span>
+        </div>
+
+        {/* Sub-heading / Tagline Paragraph with highlighted tech terms */}
+        <p className="text-sm sm:text-base md:text-lg text-[var(--fg-muted)] max-w-2xl leading-relaxed mb-8 relative z-10">
+          Full Stack Developer building{" "}
+          <span className="text-purple-600 dark:text-purple-400 font-bold">
+            AI-powered
+          </span>{" "}
+          products with{" "}
+          <span className="text-indigo-600 dark:text-indigo-400 font-bold">
+            Next.js
+          </span>
+          ,{" "}
+          <span className="text-indigo-600 dark:text-indigo-400 font-bold">
+            React
+          </span>{" "}
+          &amp;{" "}
+          <span className="text-indigo-600 dark:text-indigo-400 font-bold">
+            Node.js
+          </span>
+          .
+        </p>
+
+        {/* Action Call-to-Action Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-8 relative z-10">
+          {/* Primary Action Button — Glowing Gradient Pill */}
+          <a
+            href="#projects"
+            onClick={scrollToProjects}
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm font-bold text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 hover:opacity-90 shadow-[0_0_25px_rgba(99,102,241,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
+          >
+            <span>View Projects</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+
+          {/* Secondary Action Button — Sleek Outline Glass Pill */}
+          <a
+            href="#contact"
+            onClick={scrollToContact}
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm font-bold border transition-all duration-300 hover:scale-105 active:scale-95"
+            style={{
+              borderColor: "var(--border)",
+              background: "var(--pill-bg)",
+              color: "var(--fg)",
+            }}
+          >
+            <span>Let&apos;s Connect</span>
+            <svg className="w-4 h-4 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </a>
+        </div>
+
+        {/* Tech Ticker / Badges Horizontal List */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-semibold text-[var(--fg-subtle)] relative z-10">
+          {heroTechList.map((tech, i) => (
+            <div key={tech} className="flex items-center gap-2 sm:gap-3">
+              <span className="hover:text-[var(--fg)] transition-colors">{tech}</span>
+              {i < heroTechList.length - 1 && (
+                <span className="w-1 h-1 rounded-full bg-[var(--fg-subtle)] opacity-50" />
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Scroll Down Button */}
-      <a
-        href="#skills"
-        onClick={(e) => {
-          e.preventDefault();
-          document.querySelector("#skills")?.scrollIntoView({ behavior: "smooth" });
-        }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 group"
-        aria-label="Scroll down"
-      >
-        <svg
-          className="w-6 h-6 text-[var(--fg)] opacity-50 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+      {/* Mouse Icon + Chevron Scroll Indicator */}
+      <div className="relative z-20 flex flex-col items-center justify-center pb-2">
+        <a
+          href="#about"
+          onClick={(e) => {
+            e.preventDefault();
+            document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="flex flex-col items-center gap-1 group opacity-60 hover:opacity-100 transition-opacity duration-300"
+          aria-label="Scroll to About section"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </a>
+          {/* Mouse Graphic */}
+          <div className="w-5 h-8 border-2 rounded-full flex justify-center p-1" style={{ borderColor: "var(--fg)" }}>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+              className="w-1 h-1.5 rounded-full bg-[var(--fg)]"
+            />
+          </div>
+          {/* Chevron Down */}
+          <svg
+            className="w-4 h-4 text-[var(--fg)] group-hover:translate-y-0.5 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
     </section>
   );
 }

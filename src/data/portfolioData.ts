@@ -238,16 +238,30 @@ export const projectsData: Project[] = [
 
 export const experienceData: ExperienceItem[] = [
   {
-    id: "hypercloud",
-    role: "UI/UX Design Intern",
-    company: "Hyper Cloud Digital Solutions",
-    period: "Aug 2025 – Nov 2025",
+    id: "ducat-india",
+    role: "MERN Stack Development Trainee",
+    company: "Ducat India, Noida, Sector 16",
+    period: "Sep 2025 – Present",
+    location: "Noida, India (Remote)",
+    type: "Traineeship",
+    points: [
+      "Undergoing structured MERN Stack Development training with hands-on learning in MongoDB, Express.js, React.js, and Node.js.",
+      "Developing practical understanding of full-stack web development, including responsive frontend development, backend APIs, database integration, and client-server communication.",
+      "Strengthening skills in JavaScript, React.js, Node.js, Express.js, MongoDB, REST APIs, and CRUD operations through project-based development and practical assignments.",
+      "Applying software development practices including Git/GitHub, API testing, debugging, authentication, and responsive UI development while building web applications.",
+    ],
+  },
+  {
+    id: "techiguru",
+    role: "Full Stack Developer Intern",
+    company: "Techiguru",
+    period: "April 2024 – June 2024",
     location: "Remote",
     type: "Internship",
     points: [
-      "Designed responsive user interfaces for the TPLiVE client project in Figma, emphasizing usability, visual consistency, and an intuitive user experience.",
-      "Created wireframes, high-fidelity screen designs, and reusable UI components following modern design principles and project requirements.",
-      "Collaborated with developers to ensure accurate implementation of UI designs and maintain consistency across the application.",
+      "Gained hands-on experience with the MERN stack by working with React.js, Node.js, Express.js, and MongoDB in a practical development environment.",
+      "Strengthened full-stack development skills through responsive frontend development, REST APIs, database integration, authentication, CRUD operations, and client-server communication.",
+      "Collaborated in a remote development environment while applying Git/GitHub workflows, debugging, API integration, code organization, and deployment concepts through project-based development tasks.",
     ],
   },
 ];

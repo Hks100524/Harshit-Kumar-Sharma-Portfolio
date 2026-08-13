@@ -105,6 +105,20 @@
   transition: background 0.2s;
 }
 
+/* Skill card hover lift */
+.skill-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  border-color: rgba(25, 25, 25, 0.35) !important;
+}
+.dark .skill-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
 /* Smooth button */
 .btn-primary {
   display: inline-flex;
@@ -206,3 +220,20 @@
   flex-shrink: 0;
   margin-top: 0.375rem;
 }
+
+/* Infinite Marquee Ticker */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
