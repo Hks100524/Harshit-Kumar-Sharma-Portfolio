@@ -233,8 +233,8 @@ export default function Hero() {
       {/* Vercel/Stripe Ambient Cursor Spotlight & Tech Grid Constellation Background */}
       <AmbientSpotlightBackground />
 
-      {/* Left social icons */}
-      <div className="absolute bottom-8 left-8 flex flex-col gap-4 z-20">
+      {/* Left social icons — 100% Clickable with high z-index & explicit handlers */}
+      <div className="absolute bottom-8 left-8 flex flex-col gap-3 z-50 pointer-events-auto">
         {[
           { icon: <LinkedinIcon />, href: personalData.linkedin, label: "LinkedIn" },
           { icon: <GithubIcon />, href: personalData.github, label: "GitHub" },
@@ -246,7 +246,13 @@ export default function Hero() {
             target={href.startsWith("http") ? "_blank" : undefined}
             rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
             aria-label={label}
-            className="text-[var(--fg)] hover:opacity-50 transition-opacity duration-300"
+            onClick={(e) => {
+              if (href.startsWith("http")) {
+                e.preventDefault();
+                window.open(href, "_blank", "noopener,noreferrer");
+              }
+            }}
+            className="p-2.5 rounded-xl text-[var(--fg)] hover:bg-[var(--pill-bg)] hover:opacity-80 transition-all duration-300 cursor-pointer relative z-50 pointer-events-auto flex items-center justify-center"
           >
             {icon}
           </a>
