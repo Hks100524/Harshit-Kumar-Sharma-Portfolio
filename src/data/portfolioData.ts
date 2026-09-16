@@ -47,8 +47,8 @@ export const personalData = {
   phone: "+91-8868801024",
   email: "harshitsharma363978@gmail.com",
   location: "Moradabad, Uttar Pradesh, India",
-  github: "https://github.com",
-  linkedin: "https://linkedin.com",
+  github: "https://github.com/Hks100524",
+  linkedin: "https://www.linkedin.com/in/harshit-kumar-sharma-1ba6a9302/",
   summary:
     "Full Stack Developer with hands-on experience building AI-powered web applications using Next.js, React.js, Node.js, Express.js, MongoDB, TypeScript, and JavaScript. Experienced in developing secure authentication systems, REST APIs, database-driven applications, and responsive user interfaces through real-world projects. Proficient in integrating AI services, deploying applications on cloud platforms, and building clean, scalable, and maintainable software.",
   education: [
@@ -148,7 +148,7 @@ export const projectsData: Project[] = [
       "Vercel",
     ],
     liveUrl: "https://intervo-demo.vercel.app",
-    githubUrl: "https://github.com/harshit/intervo",
+    githubUrl: "https://github.com/Hks100524/intervo",
     highlights: [
       "Built full-stack AI Interview Preparation Platform using Next.js 15, TypeScript, MongoDB Atlas, and Gemini AI to practice interviews & track performance.",
       "Implemented secure JWT Authentication, Google OAuth, protected routes, REST APIs, and MongoDB data models.",
@@ -174,7 +174,7 @@ export const projectsData: Project[] = [
       "MERN",
     ],
     liveUrl: "https://skillup-demo.vercel.app",
-    githubUrl: "https://github.com/harshit/skillup",
+    githubUrl: "https://github.com/Hks100524/skillup",
     highlights: [
       "Built full-stack Career Preparation Platform using the MERN stack for aptitude practice, technical learning, and career growth.",
       "Implemented secure JWT Authentication, role-based authorization, protected routes, and MongoDB data models.",
@@ -200,7 +200,7 @@ export const projectsData: Project[] = [
       "Vercel",
     ],
     liveUrl: "https://adfit-analyzer.vercel.app",
-    githubUrl: "https://github.com/harshit/adfit-analyzer",
+    githubUrl: "https://github.com/Hks100524/adfit-analyzer",
     highlights: [
       "Built AI-powered platform to analyze alignment between advertisement copy and landing pages, identifying conversion-impacting mismatches.",
       "Implemented automated landing page fetching and HTML parsing using Axios and Cheerio for structured content extraction.",
@@ -226,7 +226,7 @@ export const projectsData: Project[] = [
       "REST API",
     ],
     liveUrl: "https://shift-attendance.vercel.app",
-    githubUrl: "https://github.com/harshit/employee-shift-system",
+    githubUrl: "https://github.com/Hks100524/employee-shift-system",
     highlights: [
       "Built full-stack Employee Shift & Attendance System using MERN stack to streamline workforce operations.",
       "Implemented JWT Authentication and Role-Based Access Control (RBAC) for Admin, Manager, and Employee modules.",
