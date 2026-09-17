@@ -49,28 +49,35 @@ export default function Projects() {
               style={{ background: "var(--card-bg)" }}
               onClick={() => project.liveUrl && window.open(project.liveUrl, "_blank", "noopener,noreferrer")}
             >
-              {/* Image area — gradient placeholder */}
-              <div className="relative h-52 overflow-hidden">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${gradients[i % gradients.length]} flex items-center justify-center`}
-                >
-                  {/* Tech labels */}
-                  <div className="flex flex-wrap gap-2 p-6 justify-center">
-                    {project.techStack.slice(0, 4).map((t) => (
-                      <span
-                        key={t}
-                        className="px-3 py-1 rounded-full text-xs font-medium"
-                        style={{ background: "var(--card-bg)", color: "var(--fg-muted)", opacity: 0.9 }}
-                      >
-                        {t}
-                      </span>
-                    ))}
+              {/* Image area — cover photo with smooth hover zoom */}
+              <div className="relative h-56 sm:h-64 overflow-hidden bg-zinc-900 border-b border-[var(--border)]">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={`${project.title} cover photo`}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${gradients[i % gradients.length]} flex items-center justify-center`}
+                  >
+                    <div className="flex flex-wrap gap-2 p-6 justify-center">
+                      {project.techStack.slice(0, 4).map((t) => (
+                        <span
+                          key={t}
+                          className="px-3 py-1 rounded-full text-xs font-medium"
+                          style={{ background: "var(--card-bg)", color: "var(--fg-muted)", opacity: 0.9 }}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Hover overlay */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60 backdrop-blur-sm">
-                  <span className="text-white text-lg font-bold flex items-center gap-2">
+                  <span className="text-white text-sm font-bold flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-black/40 shadow-lg">
                     View Project <ExternalLinkIcon />
                   </span>
                 </div>

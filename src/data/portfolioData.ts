@@ -8,6 +8,7 @@ export interface Project {
   techStack: string[];
   liveUrl?: string;
   githubUrl?: string;
+  image?: string;
   featured?: boolean;
 }
 
@@ -151,6 +152,7 @@ export const projectsData: Project[] = [
     ],
     liveUrl: "https://intervo-azure.vercel.app/",
     githubUrl: "https://github.com/Hks100524/INTERVO.git",
+    image: "/projects/intervo.png",
     highlights: [
       "Built full-stack AI Interview Preparation Platform using Next.js 16 App Router, React 19, TypeScript, MongoDB Atlas, and Google Gemini AI.",
       "Implemented secure JWT Authentication, Google OAuth 2.0, protected routes, REST APIs, and MongoDB data models.",
@@ -180,6 +182,7 @@ export const projectsData: Project[] = [
     ],
     liveUrl: "https://skill-up-frontend.onrender.com/",
     githubUrl: "https://github.com/Hks100524/Skill_UP.git",
+    image: "/projects/skillup.png",
     highlights: [
       "Built full-stack Career Preparation Platform using React 19, Vite, Node.js, Express 5, and MongoDB Atlas.",
       "Implemented JWT-based authentication, email OTP verification, password recovery, and protected client routes.",
@@ -207,6 +210,7 @@ export const projectsData: Project[] = [
     ],
     liveUrl: "https://ad-fir-analyzer.vercel.app/",
     githubUrl: "https://github.com/Hks100524/ad-fir-analyzer.git",
+    image: "/projects/adfit.png",
     highlights: [
       "Built AI-powered conversion auditing platform comparing advertisement copy with destination landing pages.",
       "Implemented automated landing page fetching with Axios and server-side HTML signal extraction using Cheerio.",
@@ -238,6 +242,7 @@ export const projectsData: Project[] = [
     ],
     liveUrl: "https://employee-shift-management-snowy.vercel.app/",
     githubUrl: "https://github.com/Hks100524/employee-shift-management.git",
+    image: "/projects/employee-shift.png",
     highlights: [
       "Built full-stack Employee Shift & Attendance Management System using React, Vite, Node.js, Express, and MongoDB.",
       "Implemented JWT Authentication and Role-Based Access Control (RBAC) for Admin, Manager, and Employee modules.",
