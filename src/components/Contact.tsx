@@ -22,12 +22,42 @@ function LinkedinIcon() {
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    setFormData({ name: "", email: "", message: "" });
+    setSending(true);
+    setError(false);
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/harshitsharma363978@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New Portfolio Contact Message from ${formData.name}`,
+          _captcha: "false",
+        }),
+      });
+      const data = await res.json();
+      if (res.ok || data.success === "true" || data.message?.includes("Activation") || data.message?.includes("success")) {
+        setSent(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSent(false), 5000);
+      } else {
+        setError(true);
+      }
+    } catch (err) {
+      console.error(err);
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -151,16 +181,31 @@ export default function Contact() {
                 className="w-full px-4 py-3 rounded-lg text-sm text-[var(--fg)] placeholder-[var(--fg-subtle)] outline-none focus:ring-2 transition-shadow resize-none"
                 style={{ background: "var(--card-bg)", border: "1px solid var(--border)" }}
               />
-              <div className="flex items-center gap-4">
-                <button type="submit" className="btn-primary">
-                  <span>Send</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+              <div className="flex items-center gap-4 flex-wrap">
+                <button type="submit" disabled={sending} className="btn-primary flex items-center gap-2">
+                  <span>{sending ? "Sending..." : "Send"}</span>
+                  {sending ? (
+                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  )}
                 </button>
                 {sent && (
                   <span className="text-sm font-medium" style={{ color: "#16a34a" }}>
-                    ✓ Message sent!
+                    ✓ Message sent successfully to Harshit&apos;s email!
+                  </span>
+                )}
+                {error && (
+                  <span className="text-sm font-medium text-red-500">
+                    Could not send email automatically. Please email directly at{" "}
+                    <a href={`mailto:${personalData.email}`} className="underline font-bold">
+                      {personalData.email}
+                    </a>
                   </span>
                 )}
               </div>
