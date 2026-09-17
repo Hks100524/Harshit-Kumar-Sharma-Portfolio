@@ -41,7 +41,7 @@ export default function Projects() {
           <div className="section-heading-line" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {projectsData.map((project, i) => (
             <div
               key={project.id}
@@ -50,7 +50,7 @@ export default function Projects() {
               onClick={() => project.liveUrl && window.open(project.liveUrl, "_blank", "noopener,noreferrer")}
             >
               {/* Image area — cover photo with smooth hover zoom */}
-              <div className="relative h-56 sm:h-64 overflow-hidden bg-zinc-900 border-b border-[var(--border)]">
+              <div className="relative h-44 overflow-hidden bg-zinc-900 border-b border-[var(--border)]">
                 {project.image ? (
                   <img
                     src={project.image}
